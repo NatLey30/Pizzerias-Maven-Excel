@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+from pyparsing import javaStyleComment
 
 def extract():
     detalles = pd.read_csv("order_details.csv", sep =',')
@@ -8,7 +9,17 @@ def extract():
     orders = pd.read_csv("orders.csv", sep =',')
     return detalles, pizzas, ingredientes, orders
 
-def transfrom(detalles, pizzas, ingredientes, orders, semana):
+def transfrom(detalles, pizzas, ingredientes, orders):
+    semana = []
+    contador = 0
+    h = len(orders.axes[0])-1
+    fecha = ""
+    while contador <= 6:
+        if str(orders.loc[h]['date']) != fecha:
+            fecha = str(orders.loc[h]['date'])
+            semana.append(fecha)
+            contador += 1
+        h -= 1
     pedidos_semana = []
     for i in range(len(orders.axes[0])):
         if orders.loc[i]['date'] in semana:
@@ -21,7 +32,7 @@ def transfrom(detalles, pizzas, ingredientes, orders, semana):
             for fila in range(len(pizzas.axes[0])):
                 if pizzas.loc[fila]['pizza_id'] == pizza_id:
                     for i in range(0,m):
-                        pizzas_pedidas[pizzas.loc[fila]['pizza_type_id']] =  pizzas.loc[fila]['size'] ## diccionario
+                        pizzas_pedidas[pizzas.loc[fila]['pizza_type_id']] = pizzas.loc[fila]['size']
     porciones_ingredientes = {}
     for pizza in pizzas_pedidas:
         for k in range(len(ingredientes.pizza_type_id)):
@@ -65,6 +76,5 @@ def load(porciones_ingredientes):
 
 if "__main__" == __name__:
     detalles, pizzas, ingredientes, orders = extract()
-    semana = ['25/12/2015', '26/12/2015', '27/12/2015', '28/12/2015', '29/12/2015', '30/12/2015', '31/12/2015']
-    porciones_ingredientes = transfrom(detalles, pizzas, ingredientes, orders, semana)
+    porciones_ingredientes = transfrom(detalles, pizzas, ingredientes, orders)
     load(porciones_ingredientes)
