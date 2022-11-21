@@ -7,7 +7,7 @@ import seaborn as sns
 if "__main__" == __name__:
 
     comprar = pd.read_csv("compra_semanal.csv", sep =',')
-    orders = pd.read_csv("order_details.csv", sep =',')
+    orders = pd.read_csv("order_details_ordenado.csv", sep =',')
 
     libro = openpyxl.Workbook()
     libro.remove(libro.active)
@@ -15,7 +15,7 @@ if "__main__" == __name__:
     hoja1 = libro.create_sheet("Reporte ejecutivo")
 
     df1 = pd.read_csv('compra_semanal.csv')
-    df2 = pd.read_csv('order_details.csv')
+    df2 = pd.read_csv('order_details_ordenado.csv')
     df3 = pd.read_csv('pizzas.csv')
 
     # Creamos gráficos
