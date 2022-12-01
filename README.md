@@ -8,16 +8,16 @@ Los ficheros de entrada son:
 - order_details.csv
 - pizza_types.csv
 - pizzas.csv
-- data_dictionary
+- data_dictionary.csv
 
 Los ficheros de salida son:
 - order_details_ordenado.csv
 - orders_ordenado.csv
-- Informe_Pizzerias_Maven.xlxs
-
+- compra_semanal.csv
+- Informe_Pizzerias_Maven.xlsx
 
 Los archivos de transformación son:
-- compra.py
 - limpiar_datos.py
+- compra.py
 - generar_excel.py
 
