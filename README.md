@@ -21,3 +21,13 @@ Los archivos de transformación son:
 - compra.py
 - generar_excel.py
 
+Lirerías:
+- pandas
+- re
+- dateutil.parser
+- datetime
+- word2number
+- openpyxl
+- matplotlib.pyplot
+- seaborn
+- xlsxwriter
